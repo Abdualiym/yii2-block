@@ -1,0 +1,42 @@
+{
+  "name": "abdualiym/yii2-blocks",
+  "description": "Yii2 content blocks extension",
+  "keywords": [
+    "yii2",
+    "framework",
+    "advanced",
+    "content",
+    "blocks",
+  ],
+  "homepage": "http://www.github.com/",
+  "type": "yii2-extension",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Olimjon Aripdjanov",
+      "email": "a.abdualiym@gmail.com",
+      "homepage": "http://sayti.uz"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "~2.0",
+    "elisdn/yii2-composite-form": "^1.0",
+    "mihaildev/yii2-elfinder": "*",
+    "mihaildev/yii2-ckeditor": "*",
+    "la-haute-societe/yii2-save-relations-behavior": "^1.2",
+    "abdualiym/yii2-language-class": "*",
+    "kartik-v/yii2-widget-fileinput": "@dev",
+    "yii-dream-team/yii2-upload-behavior": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "abdualiym\\blocks\\": ""
+    }
+  },
+  "extra": {
+    "bootstrap": "abdualiym\\blocks\\Bootstrap"
+  }
+}
