@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\text\helpers;
+namespace abdualiym\blocks\helpers;
 
 use abdualiym\text\entities\Category;
 use yii\helpers\ArrayHelper;

@@ -1,13 +1,8 @@
 <?php
 
-namespace abdualiym\text;
+namespace abdualiym\blocks;
 
 
-use Yii;
-
-/**
- * Menu module definition class
- */
 class Module extends \yii\base\Module
 {
 

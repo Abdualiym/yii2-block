@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\text\validators;
+namespace abdualiym\blocks\validators;
 
 use yii\validators\RegularExpressionValidator;
 

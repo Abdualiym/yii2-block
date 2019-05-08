@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\text\controllers;
+namespace abdualiym\blocks\controllers;
 
 use Yii;
 use abdualiym\text\entities\ContentHistory;

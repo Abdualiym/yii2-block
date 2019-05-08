@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\text\widgets;
+namespace abdualiym\blocks\widgets;
 
 
 use abdualiym\text\forms\SearchForm;

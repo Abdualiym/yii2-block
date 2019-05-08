@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\text\forms;
+namespace abdualiym\blocks\forms;
 
 use abdualiym\languageClass\Language;
 use abdualiym\text\entities\Category;

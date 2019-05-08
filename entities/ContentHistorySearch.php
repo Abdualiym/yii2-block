@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\text\entities;
+namespace abdualiym\blocks\entities;
 
 use Yii;
 use yii\base\Model;

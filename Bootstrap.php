@@ -1,12 +1,10 @@
 <?php
 
-namespace abdualiym\text;
+namespace abdualiym\blocks;
 
 use yii\base\BootstrapInterface;
 
-/**
- * Contacts module bootstrap class.
- */
+
 class Bootstrap implements BootstrapInterface
 {
     /**
@@ -15,10 +13,10 @@ class Bootstrap implements BootstrapInterface
     public function bootstrap($app)
     {
         // Add module I18N category.
-        if (!isset($app->i18n->translations['text']) && !isset($app->i18n->translations['text*'])) {
-            $app->i18n->translations['text'] = [
+        if (!isset($app->i18n->translations['blocks']) && !isset($app->i18n->translations['blocks*'])) {
+            $app->i18n->translations['blocks'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@abdualiym/text/messages',
+                'basePath' => '@abdualiym/blocks/messages',
                 'sourceLanguage' => 'en',
                 'forceTranslation' => true,
             ];

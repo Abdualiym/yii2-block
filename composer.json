@@ -21,7 +21,7 @@
   "require": {
     "yiisoft/yii2": "~2.0",
     "mihaildev/yii2-elfinder": "*",
-    "mihaildev/yii2-ckeditor": "*",
+    "sadovojav/yii2-ckeditor": "dev-master",
     "kartik-v/yii2-widget-fileinput": "@dev",
     "yii-dream-team/yii2-upload-behavior": "*"
   },

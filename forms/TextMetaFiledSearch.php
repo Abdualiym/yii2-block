@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\text\forms;
+namespace abdualiym\blocks\forms;
 
 use abdualiym\text\entities\TextMetaFields;
 use abdualiym\text\helpers\TextHelper;

@@ -1,29 +1,26 @@
-# yii2-slider extension
+# yii2-blocks extension
 
-The extension allows build multi language slider.
+The extension allows manage html content blocks.
 
 ## Installation
 
 - Install with composer:
 
 ```bash
-composer require abdualiym/yii2-text
+composer require abdualiym/yii2-blocks
 ```
 
 - **After composer install** run console command for create tables:
 
 ```bash
-php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-text/migrations
+php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-blocks/migrations
 ```
 
 - add to backend config file:
 ```php
 'controllerMap' => [
-    'categories' => [
-        'class' => 'abdualiym\text\controllers\CategoryController',
-    ],
-    'text' => [
-        'class' => 'abdualiym\text\controllers\TextController',
+    'blocks' => [
+        'class' => 'abdualiym\blocks\controllers\BlocksController',
     ],
 ],
 ```
@@ -32,12 +29,12 @@ php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-text/migrations
 ```php
 'i18n' => [
     'translations' => [
-        'text' => [
+        'blocks' => [
             'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@vendor/abdualiym/yii2-text/messages',
+            'basePath' => '@vendor/abdualiym/yii2-blocks/messages',
             'sourceLanguage' => 'en',
             'fileMap' => [
-                'text' => 'text.php',
+                'blocks' => 'blocks.php',
             ],
         ],
     ]
