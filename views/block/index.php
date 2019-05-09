@@ -10,7 +10,7 @@ use abdualiym\text\entities\CategoryTranslation;
 use abdualiym\text\forms\TextForm;
 
 /* @var $this yii\web\View */
-/* @var $searchModel abdualiym\text\forms\TextSearch */
+/* @var $searchModel abdualiym\text\forms\BlockSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 

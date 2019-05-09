@@ -9,7 +9,7 @@ use abdualiym\text\forms\PhotosForm;
 use abdualiym\text\forms\TextForm;
 use abdualiym\text\forms\TextMetaFieldForm;
 use abdualiym\text\forms\TextMetaFiledSearch;
-use abdualiym\text\forms\TextSearch;
+use abdualiym\text\forms\BlockSearch;
 use abdualiym\text\services\TextManageService;
 use abdualiym\text\services\TextMetaFieldManageService;
 use Yii;
@@ -57,7 +57,7 @@ class TextController extends Controller implements ViewContextInterface
 
     public function actionIndex($page = false)
     {
-        $searchModel = new TextSearch($page);
+        $searchModel = new BlockSearch($page);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

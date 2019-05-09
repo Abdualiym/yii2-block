@@ -7,7 +7,7 @@ use abdualiym\text\helpers\TextHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
-class TextSearch extends Model
+class BlockSearch extends Model
 {
     public $id;
     public $title;
