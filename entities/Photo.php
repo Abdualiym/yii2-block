@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks\entities;
+namespace abdualiym\block\entities;
 
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;

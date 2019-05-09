@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks\services;
+namespace abdualiym\block\services;
 
 
 use abdualiym\text\entities\Text;

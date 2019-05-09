@@ -1,12 +1,12 @@
 {
-  "name": "abdualiym/yii2-blocks",
-  "description": "Yii2 content blocks extension",
+  "name": "abdualiym/yii2-block",
+  "description": "Yii2 content block extension",
   "keywords": [
     "yii2",
     "framework",
     "advanced",
     "content",
-    "blocks"
+    "block"
   ],
   "homepage": "https://www.github.com/",
   "type": "yii2-extension",
@@ -30,10 +30,10 @@
   },
   "autoload": {
     "psr-4": {
-      "abdualiym\\blocks\\": ""
+      "abdualiym\\block\\": ""
     }
   },
   "extra": {
-    "bootstrap": "abdualiym\\blocks\\Bootstrap"
+    "bootstrap": "abdualiym\\block\\Bootstrap"
   }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace abdualiym\blocks\widgets;
+namespace abdualiym\block\widgets;
 
 
 use abdualiym\languageClass\Language;

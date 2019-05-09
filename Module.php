@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks;
+namespace abdualiym\block;
 
 
 class Module extends \yii\base\Module

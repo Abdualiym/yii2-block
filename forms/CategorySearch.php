@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks\forms;
+namespace abdualiym\block\forms;
 
 use abdualiym\text\entities\Category;
 use abdualiym\text\helpers\CategoryHelper;

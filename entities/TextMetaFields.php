@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks\entities;
+namespace abdualiym\block\entities;
 
 use abdualiym\languageClass\Language;
 use yii\db\ActiveQuery;

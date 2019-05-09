@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks\services;
+namespace abdualiym\block\services;
 
 
 use abdualiym\text\entities\Text;
@@ -9,7 +9,7 @@ use abdualiym\text\forms\TextForm;
 use abdualiym\text\repositories\TextRepository;
 use abdualiym\text\repositories\TextTranslationRepository;
 
-class BlocksManageService
+class BlockManageService
 {
     private $textTranslations;
     private $texts;

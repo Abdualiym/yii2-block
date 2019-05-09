@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks;
+namespace abdualiym\block;
 
 use yii\base\BootstrapInterface;
 use Yii;
@@ -14,17 +14,17 @@ class Bootstrap implements BootstrapInterface
     public function bootstrap($app)
     {
         // Add module I18N category.
-        if (!isset($app->i18n->translations['blocks']) && !isset($app->i18n->translations['blocks*'])) {
-            $app->i18n->translations['blocks'] = [
+        if (!isset($app->i18n->translations['block']) && !isset($app->i18n->translations['block*'])) {
+            $app->i18n->translations['block'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@abdualiym/blocks/messages',
+                'basePath' => '@abdualiym/block/messages',
                 'sourceLanguage' => 'en',
                 'forceTranslation' => true,
             ];
         }
 
-        Yii::$app->controllerMap['blocks'] = [
-            'class' => 'abdualiym\blocks\controllers\BlocksController',
+        Yii::$app->controllerMap['block'] = [
+            'class' => 'abdualiym\block\controllers\BlockController',
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks\controllers;
+namespace abdualiym\block\controllers;
 
 use abdualiym\text\entities\Category;
 use abdualiym\text\forms\CategoryForm;

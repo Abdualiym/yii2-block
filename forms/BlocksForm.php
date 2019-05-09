@@ -13,7 +13,7 @@ use yii\web\UploadedFile;
  * @property TextTranslationForm $translations
  * @property PhotosForm $photos
  */
-class TextForm extends CompositeForm
+class BlockForm extends CompositeForm
 {
     public $category_id;
     public $date;

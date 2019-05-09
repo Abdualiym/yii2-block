@@ -2,9 +2,7 @@
 
 namespace abdualiym\block\entities;
 
-use abdualiym\languageClass\Language;
 use abdualiym\text\helpers\TextHelper;
-use backend\entities\User;
 use domain\modules\menu\entities\Menu;
 use abdualiym\text\entities\queries\TextQuery;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
@@ -27,14 +25,12 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * @property integer $date
  * @property integer $views_count
  * @property integer $created_at
- * @property integer $created_by
  * @property integer $updated_at
- * @property integer $updated_by
  *
  * @property TextTranslation[] $translations
  * @property Photo[] $photos
  */
-class Text extends ActiveRecord
+class Block extends ActiveRecord
 {
     const STATUS_DRAFT = 0;
     const STATUS_ACTIVE = 1;
@@ -309,8 +305,4 @@ class Text extends ActiveRecord
     }
 
 
-    public static function find(): TextQuery
-    {
-        return new TextQuery(static::class);
-    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace abdualiym\blocks\repositories;
+namespace abdualiym\block\repositories;
 
 
 use abdualiym\text\entities\Category;
