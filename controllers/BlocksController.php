@@ -10,7 +10,7 @@ use abdualiym\text\forms\TextForm;
 use abdualiym\text\forms\TextMetaFieldForm;
 use abdualiym\text\forms\TextMetaFiledSearch;
 use abdualiym\text\forms\TextSearch;
-use abdualiym\text\services\TextManageService;
+use abdualiym\text\services\BlocksManageService;
 use abdualiym\text\services\TextMetaFieldManageService;
 use Yii;
 use yii\base\ViewContextInterface;
@@ -21,13 +21,11 @@ use yii\web\NotFoundHttpException;
 class BlocksController extends Controller implements ViewContextInterface
 {
     private $service;
-    private $metaService;
 
-    public function __construct($id, $module, TextManageService $service, TextMetaFieldManageService $metaService, $config = [])
+    public function __construct($id, $module, BlocksManageService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
-        $this->metaService = $metaService;
     }
 
 
@@ -51,7 +49,7 @@ class BlocksController extends Controller implements ViewContextInterface
 
     public function getViewPath()
     {
-        return Yii::getAlias('@vendor/abdualiym/yii2-text/views/text');
+        return Yii::getAlias('@vendor/abdualiym/yii2-blocks/views/blocks');
     }
 
 

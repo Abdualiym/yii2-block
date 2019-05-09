@@ -3,6 +3,7 @@
 namespace abdualiym\blocks;
 
 use yii\base\BootstrapInterface;
+use Yii;
 
 
 class Bootstrap implements BootstrapInterface
@@ -21,5 +22,9 @@ class Bootstrap implements BootstrapInterface
                 'forceTranslation' => true,
             ];
         }
+
+        Yii::$app->controllerMap['blocks'] = [
+            'class' => 'abdualiym\blocks\controllers\BlocksController',
+        ];
     }
 }
