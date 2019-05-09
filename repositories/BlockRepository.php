@@ -15,14 +15,14 @@ class BlockRepository
         return $block;
     }
 
-    public function save(Block $Block)
+    public function save(Block $block)
     {
         if (!$block->save()) {
             throw new \RuntimeException('Saving error.');
         }
     }
 
-    public function remove(Block $Block)
+    public function remove(Block $block)
     {
         if (!$block->delete()) {
             throw new \RuntimeException('Removing error.');
