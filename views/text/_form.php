@@ -83,7 +83,7 @@ $thumb = isset($text->photo) ? $text->getThumbFileUrl('photo', 'thumb') : '';
                                 'defaultDate' => date('Y-m-d')
                             ],
                             'options' => ['class' => 'form-control']
-//                    ])->label(Yii::t('text', 'Date'))
+//                    ])->label(Yii::t('block', 'Date'))
                         ])->label('Дата публикаций') ?>
                     </div>
 

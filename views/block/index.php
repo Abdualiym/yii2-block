@@ -1,75 +1,23 @@
 <?php
 
-use abdualiym\menu\components\MenuSlugHelper;
-use abdualiym\languageClass\Language;
-use abdualiym\text\entities\Text;
+use abdualiym\block\entities\Block;
+use abdualiym\block\forms\BlockForm;
 use yii\grid\GridView;
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use abdualiym\text\entities\CategoryTranslation;
-use abdualiym\text\forms\TextForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel abdualiym\text\forms\BlockSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 
-$this->title = Yii::t('text', $page ? 'Pages' : 'Articles');
+$this->title = Yii::t('block', 'Blocks');
 $this->params['breadcrumbs'][] = $this->title;
-$columns = [];
-if (!$page) {
-    $columns[] = [
-        'value' => function (Text $model) {
-            return $model->mainPhoto ? Html::img($model->mainPhoto->getThumbFileUrl('file', 'admin')) : null;
-        },
-        'format' => 'raw',
-        'contentOptions' => ['style' => 'width: 100px'],
-    ];
-    $columns[] =
-        [
-            'attribute' => 'category_id',
-            'label' => Yii::t('text', 'Category'),
-            'value' => function (Text $model) {
-                return $model->category ? $model->category->translations[0]['name'] : 'No';
-            },
-            'filter' => (new TextForm())->categoriesList(true)
-        ];
-    $columns[] =
-        [
-            'attribute' => 'date',
-            'label' => Yii::t('text', 'Date'),
-            'format' => 'date',
-        ];
 
-}
-$columns[] = [
-    'attribute' => 'title',
-    'label' => 'Название',
-    'value' => function (Text $model) {
-        foreach ($model->translations as $translation) {
-            if ($translation['lang_id'] == (Language::getLangByPrefix('ru'))['id']) {
-                $translate = $translation;
-            }
-        }
-        return Html::a(Html::encode($translate['title']), ['view', 'id' => $model->id, 'page' => (Yii::$app->request->get('page') ? true : false)]);
-    },
-    'format' => 'raw',
-];
-$columns[] =
-    [
-        'attribute' => 'status',
-        'label' => Yii::t('text', 'Status'),
-        'value' => function (Text $model) {
-            return \abdualiym\text\helpers\TextHelper::statusLabel($model->status);
-        },
-        'format' => 'html',
-        'filter' => [Text::STATUS_ACTIVE => 'Актывные', Text::STATUS_DRAFT => 'Черновики']
-    ];
 ?>
 <div class="user-index">
 
     <p>
-        <?= Html::a(Html::tag('i','',['class' => 'fa fa-plus']).' Добавить', ['create', 'page' => $page], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-plus']) . ' Добавить', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
     </p>
 
     <div class="box">
@@ -77,7 +25,36 @@ $columns[] =
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
-                'columns' => $columns]) ?>
+                'columns' => [
+                    [
+                        'value' => function (Block $model) {
+                            return Html::img($model->getThumbFileUrl('file', 'admin'));
+                        },
+                        'format' => 'raw',
+                    ],
+                    [
+                        'attribute' => 'parent_id',
+                        'label' => Yii::t('block', 'Parent'),
+                        'value' => function (Block $model) {
+                            return $model->getParent() ? $model->getParent()->label : null;
+                        },
+                        'filter' => BlockForm::parentList()
+                    ],
+//                [
+//                    'attribute' => 'date',
+//                    'label' => Yii::t('block', 'Date'),
+//                    'format' => 'date',
+//                ],
+                    [
+                        'attribute' => 'label',
+                        'label' => 'Название',
+                        'value' => function (Block $model) {
+                            return Html::a(Html::encode($model->label, ['view', 'id' => $model->id]));
+                        },
+                        'format' => 'raw',
+                    ],
+                ]
+            ]) ?>
         </div>
     </div>
 </div>

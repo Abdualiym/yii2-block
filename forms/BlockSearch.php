@@ -2,8 +2,7 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\text\entities\Text;
-use abdualiym\text\helpers\TextHelper;
+use abdualiym\block\entities\Block;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -14,11 +13,9 @@ class BlockSearch extends Model
     public $status;
     public $category_id;
     public $date;
-    public $page;
 
-    public function __construct($page, array $config = [])
+    public function __construct(array $config = [])
     {
-        $this->page = $page;
         parent::__construct($config);
     }
 
@@ -27,7 +24,7 @@ class BlockSearch extends Model
     {
         return [
             [['id', 'status'], 'integer'],
-            [['title','category_id'], 'safe'],
+            [['title', 'category_id'], 'safe'],
         ];
     }
 
@@ -37,28 +34,10 @@ class BlockSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Text::find()
-            ->joinWith(['translations' => function ($q) {
-                $q->andWhere(['lang_id' => 2]);
-            }]);
-
-
-
-        if ($this->page) {
-            $query->andWhere(['is_article' => false]);
-        } else {
-            $query->andWhere(['is_article' => true]);
-        }
+        $query = Block::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => [
-                'defaultOrder' => ['id' => SORT_DESC]
-            ],
-            'pagination' => [
-                'pageParam' => 'p',
-                'pageSize' => 25
-            ],
         ]);
 
         $this->load($params);
@@ -73,16 +52,10 @@ class BlockSearch extends Model
         ]);
 
         $query
-            ->andFilterWhere(['like', 'text_text_translations.title', $this->title])
+//            ->andFilterWhere(['like', 'text_text_translations.title', $this->title])
             ->andFilterWhere(['=', 'status', $this->status])
             ->andFilterWhere(['=', 'category_id', $this->category_id]);
 
-
         return $dataProvider;
-    }
-
-    public function statusList(): array
-    {
-        return TextHelper::statusList();
     }
 }

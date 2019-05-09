@@ -12,13 +12,6 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-//        if (!$app->hasModule('block')) {
-//            $app->setModule('block', [
-//                'class' => '@abdualiym\block\Module'
-//            ]);
-//        }
-
-
         // Add module I18N category.
         if (!isset($app->i18n->translations['block']) && !isset($app->i18n->translations['block*'])) {
             $app->i18n->translations['block'] = [

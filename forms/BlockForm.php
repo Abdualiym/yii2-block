@@ -2,68 +2,48 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\languageClass\Language;
-use abdualiym\text\entities\Category;
-use abdualiym\text\entities\Text;
+use abdualiym\block\entities\Block;
+use abdualiym\block\entities\Category;
+use abdualiym\block\entities\Text;
 use elisdn\compositeForm\CompositeForm;
+use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
 /**
- * @property TextTranslationForm $translations
- * @property PhotosForm $photos
+ * @property integer $parent_id
+ * @property string $label
+ * @property string $slug
+ * @property integer $data_type
+ * @property string $data_helper
+ * @property boolean $common
+ * @property string $data_0
+ * @property string $data_1
+ * @property string $data_2
+ * @property string $data_3
  */
-class BlockForm extends CompositeForm
+class BlockForm extends Model
 {
-    public $category_id;
-    public $date;
+    public $parent_id;
+    public $label;
+    public $slug;
+    public $data_type;
+    public $common;
+
     private $_text;
 
-    public function __construct(Text $text = null, $config = [])
+    public function __construct(Block $block = null, $config = [])
     {
-        if ($text) {
-            $this->category_id = $text->category_id;
-            $this->date = $text->date;
-            $this->translations = array_map(function (array $language) use ($text) {
-                return new TextTranslationForm($text->getTranslation($language['id']));
-            }, Language::langList(\Yii::$app->params['languages']));
+        if ($block) {
+            $this->parent_id = $block->parent_id;
+            $this->label = $block->label;
+            $this->label = $block->label;
             $this->_text = $text;
-        } else {
-            $this->translations = array_map(function () {
-                return new TextTranslationForm();
-            }, Language::langList(\Yii::$app->params['languages']));
-            $this->photos = new PhotosForm();
         }
+
         parent::__construct($config);
     }
 
-    public function rules(): array
-    {
-        return [
-            [['date'], 'required'],
-            [['category_id'], 'integer'],
-            [['date'], 'string', 'max' => 12],
-        ];
-    }
 
-    public function categoriesList($lang = false): array
-    {
-        return ArrayHelper::map(
-            Category::find()->where(['status' => Category::STATUS_ACTIVE])->with('translations')->asArray()->all(), 'id', function (array $category) use ($lang) {
-            return $lang ? $category['translations'][0]['name'] : $category['translations'];
-        });
-    }
 
-    public function textsList($lang = false): array
-    {
-        return ArrayHelper::map(
-            Text::find()->where(['status' => Text::STATUS_ACTIVE])->with('translations')->asArray()->all(), 'id', function (array $text) use ($lang) {
-            return $lang ? $text['translations'][0]['title'] : $text['translations'];
-        });
-    }
-
-    public function internalForms(): array
-    {
-        return ['translations', 'photos'];
-    }
 }

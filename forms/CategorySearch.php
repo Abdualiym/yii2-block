@@ -2,8 +2,8 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\text\entities\Category;
-use abdualiym\text\helpers\CategoryHelper;
+use abdualiym\block\entities\Category;
+use abdualiym\block\helpers\CategoryHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;

@@ -3,7 +3,7 @@
 namespace abdualiym\block\repositories;
 
 
-use abdualiym\text\entities\Category;
+use abdualiym\block\entities\Category;
 
 class CategoryRepository
 {

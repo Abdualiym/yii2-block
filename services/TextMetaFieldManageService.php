@@ -3,13 +3,13 @@
 namespace abdualiym\block\services;
 
 
-use abdualiym\text\entities\Text;
-use abdualiym\text\entities\TextMetaFields;
-use abdualiym\text\forms\TextForm;
-use abdualiym\text\forms\TextMetaFieldForm;
-use abdualiym\text\repositories\MetaFieldRepository;
-use abdualiym\text\repositories\TextMetaFieldRepository;
-use abdualiym\text\repositories\TextTranslationRepository;
+use abdualiym\block\entities\Text;
+use abdualiym\block\entities\TextMetaFields;
+use abdualiym\block\forms\TextForm;
+use abdualiym\block\forms\TextMetaFieldForm;
+use abdualiym\block\repositories\MetaFieldRepository;
+use abdualiym\block\repositories\TextMetaFieldRepository;
+use abdualiym\block\repositories\TextTranslationRepository;
 use yii\helpers\VarDumper;
 
 class TextMetaFieldManageService

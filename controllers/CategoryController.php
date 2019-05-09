@@ -2,10 +2,10 @@
 
 namespace abdualiym\block\controllers;
 
-use abdualiym\text\entities\Category;
-use abdualiym\text\forms\CategoryForm;
-use abdualiym\text\forms\CategorySearch;
-use abdualiym\text\services\CategoryManageService;
+use abdualiym\block\entities\Category;
+use abdualiym\block\forms\CategoryForm;
+use abdualiym\block\forms\CategorySearch;
+use abdualiym\block\services\CategoryManageService;
 use Yii;
 use yii\base\ViewContextInterface;
 use yii\filters\VerbFilter;

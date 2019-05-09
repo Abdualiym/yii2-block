@@ -2,19 +2,19 @@
 
 use abdualiym\menu\components\MenuSlugHelper;
 use abdualiym\languageClass\Language;
-use abdualiym\text\entities\Text;
+use abdualiym\block\entities\Text;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use abdualiym\text\entities\CategoryTranslation;
-use abdualiym\text\forms\TextForm;
+use abdualiym\block\entities\CategoryTranslation;
+use abdualiym\block\forms\TextForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel abdualiym\text\forms\BlockSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 
-$this->title = Yii::t('text', $page ? 'Pages' : 'Articles');
+$this->title = Yii::t('block', $page ? 'Pages' : 'Articles');
 $this->params['breadcrumbs'][] = $this->title;
 $columns = [];
 if (!$page) {
@@ -28,7 +28,7 @@ if (!$page) {
     $columns[] =
         [
             'attribute' => 'category_id',
-            'label' => Yii::t('text', 'Category'),
+            'label' => Yii::t('block', 'Category'),
             'value' => function (Text $model) {
                 return $model->category ? $model->category->translations[0]['name'] : 'No';
             },
@@ -37,7 +37,7 @@ if (!$page) {
     $columns[] =
         [
             'attribute' => 'date',
-            'label' => Yii::t('text', 'Date'),
+            'label' => Yii::t('block', 'Date'),
             'format' => 'date',
         ];
 
@@ -58,7 +58,7 @@ $columns[] = [
 $columns[] =
     [
         'attribute' => 'status',
-        'label' => Yii::t('text', 'Status'),
+        'label' => Yii::t('block', 'Status'),
         'value' => function (Text $model) {
             return \abdualiym\text\helpers\TextHelper::statusLabel($model->status);
         },

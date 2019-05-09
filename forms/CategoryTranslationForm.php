@@ -3,7 +3,7 @@
 namespace abdualiym\block\forms;
 
 use abdualiym\languageClass\Language;
-use abdualiym\text\entities\CategoryTranslation;
+use abdualiym\block\entities\CategoryTranslation;
 use yii\base\Model;
 
 /**

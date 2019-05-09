@@ -2,16 +2,16 @@
 
 namespace abdualiym\text\controllers;
 
-use abdualiym\text\entities\Meta;
-use abdualiym\text\entities\Text;
-use abdualiym\text\entities\TextMetaFields;
-use abdualiym\text\forms\PhotosForm;
-use abdualiym\text\forms\TextForm;
-use abdualiym\text\forms\TextMetaFieldForm;
-use abdualiym\text\forms\TextMetaFiledSearch;
-use abdualiym\text\forms\BlockSearch;
-use abdualiym\text\services\TextManageService;
-use abdualiym\text\services\TextMetaFieldManageService;
+use abdualiym\block\entities\Meta;
+use abdualiym\block\entities\Text;
+use abdualiym\block\entities\TextMetaFields;
+use abdualiym\block\forms\PhotosForm;
+use abdualiym\block\forms\TextForm;
+use abdualiym\block\forms\TextMetaFieldForm;
+use abdualiym\block\forms\TextMetaFiledSearch;
+use abdualiym\block\forms\BlockSearch;
+use abdualiym\block\services\TextManageService;
+use abdualiym\block\services\TextMetaFieldManageService;
 use Yii;
 use yii\base\ViewContextInterface;
 use yii\filters\VerbFilter;

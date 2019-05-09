@@ -3,11 +3,11 @@
 namespace abdualiym\block\services;
 
 
-use abdualiym\text\entities\Text;
-use abdualiym\text\forms\PhotosForm;
-use abdualiym\text\forms\TextForm;
-use abdualiym\text\repositories\TextRepository;
-use abdualiym\text\repositories\TextTranslationRepository;
+use abdualiym\block\entities\Text;
+use abdualiym\block\forms\PhotosForm;
+use abdualiym\block\forms\TextForm;
+use abdualiym\block\repositories\TextRepository;
+use abdualiym\block\repositories\TextTranslationRepository;
 
 class TextManageService
 {

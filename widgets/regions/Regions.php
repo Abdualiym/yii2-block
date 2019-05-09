@@ -3,7 +3,7 @@
 namespace frontend\widgets\regions;
 
 use abdualiym\languageClass\Language;
-use abdualiym\text\entities\Text;
+use abdualiym\block\entities\Text;
 use Yii;
 use yii\base\Widget;
 

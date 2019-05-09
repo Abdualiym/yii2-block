@@ -3,7 +3,7 @@
 namespace abdualiym\block\widgets;
 
 
-use abdualiym\text\forms\SearchForm;
+use abdualiym\block\forms\SearchForm;
 use yii\base\Widget;
 
 class Search extends Widget

@@ -3,24 +3,26 @@
 namespace abdualiym\block\services;
 
 
-use abdualiym\text\entities\Text;
-use abdualiym\text\forms\PhotosForm;
-use abdualiym\text\forms\TextForm;
-use abdualiym\text\repositories\TextRepository;
-use abdualiym\text\repositories\TextTranslationRepository;
+use abdualiym\block\entities\Block;
+use abdualiym\block\repositories\BlockRepository;
+use abdualiym\block\entities\Text;
+use abdualiym\block\forms\PhotosForm;
+use abdualiym\block\forms\BlockForm;
+use abdualiym\block\repositories\TextRepository;
+use abdualiym\block\repositories\TextTranslationRepository;
 
 class BlockManageService
 {
     private $textTranslations;
-    private $texts;
+    private $blocks;
     private $transaction;
 
     public function __construct(
-        TextRepository $texts,
+        BlockRepository $blocks,
         TransactionManager $transaction
     )
     {
-        $this->texts = $texts;
+        $this->texts = $blocks;
         $this->transaction = $transaction;
     }
 
@@ -28,21 +30,21 @@ class BlockManageService
      * @param TextForm $form
      * @return Text
      */
-    public function create(TextForm $form): Text
+    public function create(BlockForm $block): Block
     {
-        $text = Text::create($form->category_id, $form->date);
+        $block = Text::create($block->category_id, $block->date);
 
-        foreach ($form->translations as $translation) {
-            $text->setTranslation($translation->lang_id, $translation->title, $translation->description, $translation->content, $translation->meta);
+        foreach ($block->translations as $translation) {
+            $block->setTranslation($translation->lang_id, $translation->title, $translation->description, $translation->content, $translation->meta);
         }
 
-        foreach ($form->photos->files as $file) {
-            $text->addPhoto($file);
+        foreach ($block->photos->files as $file) {
+            $block->addPhoto($file);
         }
 
-        $this->texts->save($text);
+        $this->texts->save($block);
 
-        return $text;
+        return $block;
     }
 
     public function edit($id, TextForm $form)

@@ -3,7 +3,7 @@
 namespace abdualiym\block\repositories;
 
 
-use abdualiym\text\entities\Text;
+use abdualiym\block\entities\Text;
 
 class TextRepository
 {

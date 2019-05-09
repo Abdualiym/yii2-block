@@ -3,7 +3,7 @@
 namespace abdualiym\block\forms;
 
 use abdualiym\languageClass\Language;
-use abdualiym\text\entities\Category;
+use abdualiym\block\entities\Category;
 use elisdn\compositeForm\CompositeForm;
 use yii\helpers\Html;
 use yii\helpers\VarDumper;

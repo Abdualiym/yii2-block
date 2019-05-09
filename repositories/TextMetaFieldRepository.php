@@ -3,7 +3,7 @@
 namespace abdualiym\block\repositories;
 
 
-use abdualiym\text\entities\TextMetaFields;
+use abdualiym\block\entities\TextMetaFields;
 
 class TextMetaFieldRepository
 {

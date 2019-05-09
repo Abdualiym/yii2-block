@@ -3,10 +3,10 @@
 namespace abdualiym\block\entities;
 
 use abdualiym\languageClass\Language;
-use abdualiym\text\helpers\TextHelper;
+use abdualiym\block\helpers\TextHelper;
 use backend\entities\User;
 use domain\modules\menu\entities\Menu;
-use abdualiym\text\entities\queries\TextQuery;
+use abdualiym\block\entities\queries\TextQuery;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\BlameableBehavior;

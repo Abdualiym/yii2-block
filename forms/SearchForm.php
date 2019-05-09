@@ -2,8 +2,8 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\text\entities\Text;
-use abdualiym\text\entities\TextTranslation;
+use abdualiym\block\entities\Text;
+use abdualiym\block\entities\TextTranslation;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 

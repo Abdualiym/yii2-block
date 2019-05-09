@@ -2,7 +2,7 @@
 namespace frontend\widgets\news;
 
 use abdualiym\languageClass\Language;
-use abdualiym\text\entities\Text;
+use abdualiym\block\entities\Text;
 use yii\base\Widget;
 
 class News extends Widget

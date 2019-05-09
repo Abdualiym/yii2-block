@@ -2,8 +2,8 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\text\entities\TextMetaFields;
-use abdualiym\text\helpers\TextHelper;
+use abdualiym\block\entities\TextMetaFields;
+use abdualiym\block\helpers\TextHelper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 

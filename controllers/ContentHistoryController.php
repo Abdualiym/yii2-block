@@ -3,8 +3,8 @@
 namespace abdualiym\block\controllers;
 
 use Yii;
-use abdualiym\text\entities\ContentHistory;
-use abdualiym\text\entities\ContentHistorySearch;
+use abdualiym\block\entities\ContentHistory;
+use abdualiym\block\entities\ContentHistorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

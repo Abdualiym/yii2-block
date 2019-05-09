@@ -2,8 +2,8 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\text\entities\Text;
-use abdualiym\text\entities\TextMetaFields;
+use abdualiym\block\entities\Text;
+use abdualiym\block\entities\TextMetaFields;
 use yii\base\Model;
 
 /**

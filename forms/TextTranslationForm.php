@@ -2,7 +2,7 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\text\entities\TextTranslation;
+use abdualiym\block\entities\TextTranslation;
 use yii\base\Model;
 
 /**

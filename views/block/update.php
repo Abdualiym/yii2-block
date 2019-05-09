@@ -5,7 +5,7 @@
 /* @var $model abdualiym\text\forms\TextForm */
 
 $this->title = 'Обновить: ' . $text->translations[0]['title'];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('text', $page ? 'Pages' : 'Articles'), 'url' => ['index', 'page' => $page]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('block', $page ? 'Pages' : 'Articles'), 'url' => ['index', 'page' => $page]];
 $this->params['breadcrumbs'][] = ['label' => $text->translations[0]['title'], 'url' => ['view', 'id' => $text->id, 'page' => $page]];
 ?>
 <div class="text-update">

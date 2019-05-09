@@ -2,10 +2,9 @@
 
 namespace abdualiym\block\forms;
 
-use abdualiym\languageClass\Language;
-use abdualiym\text\entities\Category;
-use abdualiym\text\entities\Text;
-use elisdn\compositeForm\CompositeForm;
+use abdualiym\block\entities\Category;
+use abdualiym\block\entities\Text;
+use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
@@ -13,7 +12,7 @@ use yii\web\UploadedFile;
  * @property TextTranslationForm $translations
  * @property PhotosForm $photos
  */
-class TextForm extends CompositeForm
+class TextForm extends Model
 {
     public $category_id;
     public $date;
@@ -24,16 +23,9 @@ class TextForm extends CompositeForm
         if ($text) {
             $this->category_id = $text->category_id;
             $this->date = $text->date;
-            $this->translations = array_map(function (array $language) use ($text) {
-                return new TextTranslationForm($text->getTranslation($language['id']));
-            }, Language::langList(\Yii::$app->params['languages']));
             $this->_text = $text;
-        } else {
-            $this->translations = array_map(function () {
-                return new TextTranslationForm();
-            }, Language::langList(\Yii::$app->params['languages']));
-            $this->photos = new PhotosForm();
         }
+
         parent::__construct($config);
     }
 
@@ -60,10 +52,5 @@ class TextForm extends CompositeForm
             Text::find()->where(['status' => Text::STATUS_ACTIVE])->with('translations')->asArray()->all(), 'id', function (array $text) use ($lang) {
             return $lang ? $text['translations'][0]['title'] : $text['translations'];
         });
-    }
-
-    public function internalForms(): array
-    {
-        return ['translations', 'photos'];
     }
 }

@@ -10,7 +10,7 @@ use yii\widgets\DetailView;
 /* @var $text abdualiym\text\entities\Text */
 
 $this->title = $text->translations[1]['title'];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('text', $page ? 'Pages' : 'Articles'), 'url' => ['index', 'page' => $page]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('block', $page ? 'Pages' : 'Articles'), 'url' => ['index', 'page' => $page]];
 $this->params['breadcrumbs'][] = $this->title;
 
 $langList = \abdualiym\languageClass\Language::langList(Yii::$app->params['languages'], true);
@@ -47,7 +47,7 @@ $langList = \abdualiym\languageClass\Language::langList(Yii::$app->params['langu
                                     $model->category->translations[0]->name
                                     : '';
                         },
-                        'label' => Yii::t('text', 'Category')
+                        'label' => Yii::t('block', 'Category')
                     ],
                     [
                         'attribute' => 'status',
@@ -57,22 +57,22 @@ $langList = \abdualiym\languageClass\Language::langList(Yii::$app->params['langu
                     [
                         'attribute' => 'date',
                         'format' => 'date',
-                        'label' => Yii::t('text', 'Date')
+                        'label' => Yii::t('block', 'Date')
                     ],
                     [
                         'attribute' => 'is_article',
                         'format' => 'raw',
                         'value' => function ($model) {
-                            return $model->is_article ? Yii::t('text', 'Article') : Yii::t('text', 'Page');
+                            return $model->is_article ? Yii::t('block', 'Article') : Yii::t('block', 'Page');
                         },
-                        'label' => Yii::t('text', 'Type')
+                        'label' => Yii::t('block', 'Type')
                     ],
                 ],
             ]) ?>
         </div>
         <div class="col-sm-6">
             <div class="box">
-                <div class="box-header with-border"><?= Yii::t('text', 'Photo') ?></div>
+                <div class="box-header with-border"><?= Yii::t('block', 'Photo') ?></div>
                 <div class="box-body">
                     PHOTO...
                 </div>
@@ -120,15 +120,15 @@ $langList = \abdualiym\languageClass\Language::langList(Yii::$app->params['langu
                                 'attributes' => [
                                     [
                                         'attribute' => 'title',
-                                        'label' => Yii::t('text', 'Title')
+                                        'label' => Yii::t('block', 'Title')
                                     ],
                                     [
                                         'attribute' => 'slug',
-                                        'label' => Yii::t('text', 'Slug')
+                                        'label' => Yii::t('block', 'Slug')
                                     ],
                                     [
                                         'attribute' => 'description',
-                                        'label' => Yii::t('text', 'Description')
+                                        'label' => Yii::t('block', 'Description')
                                     ],
                                 ],
                             ]) ?>
@@ -146,21 +146,21 @@ $langList = \abdualiym\languageClass\Language::langList(Yii::$app->params['langu
         'attributes' => [
             [
                 'attribute' => 'createdBy.username',
-                'label' => Yii::t('text', 'Created by')
+                'label' => Yii::t('block', 'Created by')
             ],
             [
                 'attribute' => 'created_at',
                 'format' => 'datetime',
-                'label' => Yii::t('text', 'Created at')
+                'label' => Yii::t('block', 'Created at')
             ],
             [
                 'attribute' => 'updatedBy.username',
-                'label' => Yii::t('text', 'Updated by')
+                'label' => Yii::t('block', 'Updated by')
             ],
             [
                 'attribute' => 'updated_at',
                 'format' => 'datetime',
-                'label' => Yii::t('text', 'Updated at')
+                'label' => Yii::t('block', 'Updated at')
             ],
         ],
     ]) ?>

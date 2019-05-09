@@ -2,9 +2,9 @@
 
 namespace abdualiym\block\entities;
 
-use abdualiym\text\forms\CategoryForm;
+use abdualiym\block\forms\CategoryForm;
 use backend\entities\User;
-use abdualiym\text\entities\queries\CategoryQuery;
+use abdualiym\block\entities\queries\CategoryQuery;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -164,17 +164,5 @@ class Category extends ActiveRecord
             ],
         ];
     }
-
-    public function transactions(): array
-    {
-        return [
-            self::SCENARIO_DEFAULT => self::OP_ALL,
-        ];
-    }
-
-    public static function find(): CategoryQuery
-    {
-        return new CategoryQuery(static::class);
-    }
-
+    
 }
