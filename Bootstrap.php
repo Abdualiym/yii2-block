@@ -22,8 +22,8 @@ class Bootstrap implements BootstrapInterface
             ];
         }
 
-        $app->controllerMap['block'] = [
-            'class' => 'abdualiym\block\controllers\BlockController',
-        ];
+//        $app->controllerMap['block'] = [
+//            'class' => 'abdualiym\block\controllers\BlockController',
+//        ];
     }
 }

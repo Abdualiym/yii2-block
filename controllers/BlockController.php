@@ -104,24 +104,21 @@ class BlockController extends Controller implements ViewContextInterface
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id, $page = false)
+    public function actionEdit($id)
     {
-        $text = $this->findModel($id);
-        $form = new TextForm($text);
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             try {
-                $this->service->edit($text->id, $form);
-                return $this->redirect(['view', 'id' => $text->id, 'page' => $page]);
+                $model->save(false);
+                return $this->redirect(['show', 'id' => $model->id]);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
-        return $this->render('update', [
-            'model' => $form,
-            'text' => $text,
-            'page' => $page,
+        
+        return $this->render('edit', [
+            'model' => $model,
         ]);
     }
 

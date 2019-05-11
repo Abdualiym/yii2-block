@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-index">
 
     <p>
-        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-plus']) . ' Добавить', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-plus']) . ' Добавить', ['add'], ['class' => 'btn btn-success btn-flat']) ?>
     </p>
 
     <div class="box">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function (Block $model) {
                             return $model->getParent() ? $model->getParent()->label : null;
                         },
-                        'filter' => BlockForm::parentList()
+                        'filter' => Block::parentList()
                     ],
 //                [
 //                    'attribute' => 'date',

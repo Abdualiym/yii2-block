@@ -31,5 +31,4 @@ php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-block/migrations
         ]
     ],
 ],
-
 ```

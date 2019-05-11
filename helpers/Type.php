@@ -3,7 +3,6 @@
 namespace abdualiym\block\helpers;
 
 use abdualiym\block\Module;
-use yii\behaviors\TimestampBehavior;
 use yiidreamteam\upload\FileUploadBehavior;
 use yiidreamteam\upload\ImageUploadBehavior;
 
@@ -12,14 +11,14 @@ class Type
 
     const STRINGS = 1;
     const STRING_COMMON = 2;
-    const TEXTS = 3;
-    const TEXT_COMMON = 4;
     const LINKS = 5;
     const LINK_COMMON = 6;
-    const IMAGES = 7;
-    const IMAGE_COMMON = 8;
-    const FILES = 9;
-    const FILE_COMMON = 10;
+    const IMAGES = 11;
+    const IMAGE_COMMON = 12;
+    const FILES = 15;
+    const FILE_COMMON = 16;
+    const TEXTS = 21;
+    const TEXT_COMMON = 22;
 
 
     public static function config($type): array
@@ -84,6 +83,12 @@ class Type
         }
 
         return $array;
+    }
+
+    public static function name($key)
+    {
+        $list = self::list();
+        return $list[$key];
     }
 
     public static function list()

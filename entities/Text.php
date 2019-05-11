@@ -55,34 +55,6 @@ class Text extends ActiveRecord
     }
 
 
-    // Status
-
-    public function activate()
-    {
-        if ($this->isActive()) {
-            throw new \DomainException('Text is already active.');
-        }
-        $this->status = self::STATUS_ACTIVE;
-    }
-
-    public function draft()
-    {
-        if ($this->isDraft()) {
-            throw new \DomainException('Text is already draft.');
-        }
-        $this->status = self::STATUS_DRAFT;
-    }
-
-    public function isActive(): bool
-    {
-        return $this->status == self::STATUS_ACTIVE;
-    }
-
-    public function isDraft(): bool
-    {
-        return $this->status == self::STATUS_DRAFT;
-    }
-
 
     // Photos
 

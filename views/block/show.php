@@ -1,18 +1,18 @@
 <?php
 
-use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\widgets\DetailView;
 use abdualiym\block\entities\Block;
+use abdualiym\block\helpers\Type;
+use yii\helpers\Html;
+use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model Block */
+/* @var $module \abdualiym\block\Module */
 
 $this->title = $model->label;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('block', 'Blocks'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$module = Yii::$app->controller->module;
 ?>
 <div class="user-view">
 
@@ -28,17 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
-                            'id',
                             [
                                 'attribute' => 'parent_id',
                                 'value' => function (Block $model) {
                                     return $model->parent ? $model->parent->label : null;
                                 },
                             ],
+                            'label',
+                            'slug',
                             [
-                                'attribute' => 'parent_id',
+                                'attribute' => 'data_type',
                                 'value' => function (Block $model) {
-                                    return $model->parent ? $model->parent->label : null;
+                                    return Type::name($model->data_type);
                                 },
                             ],
                         ],
@@ -52,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="box-body">
                     <?= DetailView::widget(['model' => $model,
                         'attributes' => [
+                            'id',
                             [
                                 'attribute' => 'created_at',
                                 'format' => 'datetime',
@@ -67,6 +69,34 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <div class="box box-default">
+        <div class="box-header with-border">Контент</div>
+        <div class="box-body">
+
+            <?php if (in_array($model->data_type, [Type::STRING_COMMON, Type::TEXT_COMMON, Type::IMAGE_COMMON, Type::LINK_COMMON, Type::FILE_COMMON])): ?>
+                <?= $model->showData(); ?>
+            <?php else: ?>
+                <ul class="nav nav-tabs" role="tablist">
+                    <?php foreach ($module->languages as $key => $language) : ?>
+                        <li role="presentation" <?= $key == 0 ? 'class="active"' : '' ?>>
+                            <a href="#<?= $key ?>" aria-controls="<?= $key ?>" role="tab" data-toggle="tab"><?= $language ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <div class="tab-content">
+                    <br>
+                    <?php foreach ($module->languages as $key => $language) : ?>
+                        <div role="tabpanel" class="tab-pane <?= $key == 0 ? 'active' : '' ?>" id="<?= $key ?>">
+                            <?= $model->showData($key); ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
         </div>
     </div>
 

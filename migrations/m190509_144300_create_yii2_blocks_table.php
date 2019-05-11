@@ -15,8 +15,6 @@ class m190509_144300_create_yii2_blocks_table extends Migration
             'label' => $this->string()->notNull(),
             'slug' => $this->string()->notNull(),
             'data_type' => $this->integer()->notNull(),
-            'data_helper' => $this->string(),
-            'common' => $this->boolean()->notNull(),
             'data_0' => 'MEDIUMTEXT',
             'data_1' => 'MEDIUMTEXT',
             'data_2' => 'MEDIUMTEXT',
@@ -26,6 +24,7 @@ class m190509_144300_create_yii2_blocks_table extends Migration
         ], $tableOptions);
 
         $this->createIndex('{{%index-yii2_blocks-slug}}', '{{%yii2_blocks}}', 'slug');
+        $this->createIndex('{{%index-yii2_blocks-updated_at}}', '{{%yii2_blocks}}', 'updated_at');
     }
 
 

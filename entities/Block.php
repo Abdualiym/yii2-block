@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * @property integer $id
@@ -15,8 +16,6 @@ use yii\helpers\ArrayHelper;
  * @property string $label
  * @property string $slug
  * @property integer $data_type
- * @property string $data_helper
- * @property boolean $common
  * @property string $data_0
  * @property string $data_1
  * @property string $data_2
@@ -38,37 +37,63 @@ class Block extends ActiveRecord
     {
         return [
             [['label', 'slug', 'data_type'], 'required'],
+
             [['label', 'slug'], 'string', 'max' => 255],
             [['slug'], SlugValidator::class],
+
             [['data_type'], 'in', 'range' => array_keys(Type::list())],
-            [['common'], 'boolean'],
-            [['common'], 'default', 'value' => false],
+
             [['parent_id'], 'integer'],
-            here
-//            [['data_0', 'data_1', 'data_2','data_3'], 'string'],
-//            [
-//                ['data_helper'], 'image',
-//                'when' => function (self $model) {
-//                    return $model->data_type == Type::IMAGE;
-//                }, 'enableClientValidation' => false
-//            ],
-//            [
-//                ['data_helper'], 'file',
-//                'when' => function (self $model) {
-//                    return $model->data_type == Type::FILE;
-//                }, 'enableClientValidation' => false
-//            ],
-//            [
-//                ['data_helper'], 'url', 'defaultScheme' => 'http',
-//                'when' => function (self $model) {
-//                    return $model->data_type == Type::LINK;
-//                }, 'enableClientValidation' => false
-//            ],
+
+            [['data_0', 'data_1', 'data_2', 'data_3'], 'string'],
+            [
+                ['data_0', 'data_1', 'data_2', 'data_3'], 'image',
+                'when' => function (self $model) {
+                    return in_array($model->data_type, [Type::IMAGES, Type::IMAGE_COMMON]);
+                }, 'enableClientValidation' => false
+            ],
+            [
+                ['data_0', 'data_1', 'data_2', 'data_3'], 'file',
+                'when' => function (self $model) {
+                    return in_array($model->data_type, [Type::FILES, Type::FILE_COMMON]);
+                }, 'enableClientValidation' => false
+            ],
+            [
+                ['data_0', 'data_1', 'data_2', 'data_3'], 'url', 'defaultScheme' => 'http',
+                'when' => function (self $model) {
+                    return in_array($model->data_type, [Type::LINKS, Type::LINK_COMMON]);
+                }, 'enableClientValidation' => false
+            ],
+            [
+                ['data_0', 'data_1', 'data_2', 'data_3'], 'string',
+                'when' => function (self $model) {
+                    return in_array($model->data_type, [Type::STRINGS, Type::STRING_COMMON, Type::TEXTS, Type::TEXT_COMMON]);
+                }, 'enableClientValidation' => false
+            ],
         ];
     }
 
 
     ####################################
+
+    public function showData($key = 0)
+    {
+        $data = 'data_' . $key;
+
+        if (in_array($this->data_type, [Type::IMAGES, Type::IMAGE_COMMON])) {
+            return Html::img($this->getUploadedFileUrl($data));
+        }
+
+        if (in_array($this->data_type, [Type::FILES, Type::FILE_COMMON])) {
+            return Html::a('file', $this->getUploadedFileUrl($data));
+        }
+
+        if (in_array($this->data_type, [Type::LINKS, Type::LINK_COMMON])) {
+            return Html::a('link', $this->getUploadedFileUrl($data));
+        }
+
+        return $this->$data;
+    }
 
     public function parentList(): array
     {

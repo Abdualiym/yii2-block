@@ -22,17 +22,15 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-        $this->setupLanguages();
+        $this->validateLanguages();
     }
 
 
-    private function setupLanguages()
+    private function validateLanguages()
     {
-        if (!in_array($this->languages, $this->dataKeys())) {
+        if (count(array_diff_assoc(array_keys($this->languages), $this->dataKeys()))) {
             throw new \RuntimeException('Language key is invalid. Current support keys range is ' . json_encode($this->dataKeys()));
         }
-
-
     }
 
     public function dataKeys()
