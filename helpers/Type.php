@@ -3,6 +3,7 @@
 namespace abdualiym\block\helpers;
 
 use abdualiym\block\Module;
+use yii\helpers\VarDumper;
 use yiidreamteam\upload\FileUploadBehavior;
 use yiidreamteam\upload\ImageUploadBehavior;
 
@@ -45,7 +46,7 @@ class Type
         $array = [];
         foreach ($keys as $i => $key) {
             $array[] = [
-                'class' => ImageUploadBehavior::className(),
+                'class' => ImageUploadBehavior::class,
                 'attribute' => 'data_' . $key,
                 'createThumbsOnRequest' => true,
                 'filePath' => $module->storageRoot . '/yii2-block/data/[[attribute_id]]/[[id]].[[extension]]',
