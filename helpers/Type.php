@@ -49,10 +49,10 @@ class Type
                 'class' => ImageUploadBehavior::class,
                 'attribute' => 'data_' . $key,
                 'createThumbsOnRequest' => true,
-                'filePath' => $module->storageRoot . '/yii2-block/data/[[attribute_id]]/[[id]].[[extension]]',
-                'fileUrl' => $module->storageHost . '/yii2-block/data/[[attribute_id]]/[[id]].[[extension]]',
-                'thumbPath' => $module->storageRoot . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[id]].[[extension]]',
-                'thumbUrl' => $module->storageHost . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[id]].[[extension]]',
+                'filePath' => $module->storageRoot . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
+                'fileUrl' => $module->storageHost . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
+                'thumbPath' => $module->storageRoot . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[data_' . $key.']].[[extension]]',
+                'thumbUrl' => $module->storageHost . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[data_' . $key.']].[[extension]]',
                 'thumbs' => $module->thumbs
             ];
 
@@ -74,8 +74,8 @@ class Type
             $array[] = [
                 'class' => FileUploadBehavior::className(),
                 'attribute' => 'data_' . $key,
-                'filePath' => '@staticRoot/app/text/[[attribute_text_id]]/[[id]].[[extension]]',
-                'fileUrl' => '@staticUrl/app/text/[[attribute_text_id]]/[[id]].[[extension]]',
+                'filePath' => $module->storageRoot . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
+                'fileUrl' => $module->storageHost . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
             ];
 
             if ($common) {
