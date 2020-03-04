@@ -40,25 +40,47 @@ class BlockController extends Controller implements ViewContextInterface
         return Yii::getAlias('@vendor/abdualiym/yii2-block/views/block');
     }
 
+
+    public function actionIndex()
+    {
+        $searchModel = new BlockSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id, $show = false)
+    public function actionView($id, $page = false)
     {
-        $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        $searchMetaFieldsModel = new TextMetaFiledSearch($id);
+        $metaFieldProvider = $searchMetaFieldsModel->search(Yii::$app->request->queryParams);
+
+        $text = $this->findModel($id);
+
+        $photosForm = new PhotosForm();
+        if ($photosForm->load(Yii::$app->request->post()) && $photosForm->validate()) {
             try {
-                $model->save(false);
-                return $this->redirect([$show ? 'show' : 'view', 'id' => $model->id]);
+                $this->service->addPhotos($text->id, $photosForm);
+                return $this->redirect(['view', 'id' => $text->id, 'page' => $page]);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
 
-        return $this->render('update', [
-            'model' => $model,
+        return $this->render('view', [
+            'text' => $text,
+            'page' => $page,
+            'meta' => new TextMetaFieldForm(),
+            'searchMetaFieldModel' => $searchMetaFieldsModel,
+            'metaFieldProvider' => $metaFieldProvider,
+            'photosForm' => $photosForm,
         ]);
     }
 
@@ -75,33 +97,8 @@ class BlockController extends Controller implements ViewContextInterface
         throw new NotFoundHttpException('The requested block does not exist.');
     }
 
-    /**
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        $model = $this->findModel($id);
-
-        return $this->render('view', [
-            'model' => $model,
-        ]);
-    }
-
 
     ######################################################################
-
-    public function actionIndex()
-    {
-        $searchModel = new BlockSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
 
     /**
      * @param integer $id
@@ -119,7 +116,7 @@ class BlockController extends Controller implements ViewContextInterface
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
-
+        
         return $this->render('edit', [
             'model' => $model,
         ]);
@@ -158,22 +155,19 @@ class BlockController extends Controller implements ViewContextInterface
         ]);
     }
 
-
-
     #############################################################################
 
     /**
      * @param integer $id
      * @return mixed
      */
-    public function actionDrop($id)
+    public function actionDelete($id)
     {
         try {
-            $this->findModel($id)->delete();
+            $this->service->remove($id);
         } catch (\DomainException $e) {
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-
         return $this->redirect(['index']);
     }
 

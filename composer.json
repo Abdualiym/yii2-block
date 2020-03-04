@@ -20,6 +20,7 @@
   ],
   "require": {
     "yiisoft/yii2": "~2.0",
+    "abdualiym/yii2-language": "^1.0",
     "mihaildev/yii2-elfinder": "*",
     "sadovojav/yii2-ckeditor": "dev-master",
     "kartik-v/yii2-widget-fileinput": "@dev",

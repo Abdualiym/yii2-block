@@ -2,6 +2,7 @@
 
 namespace abdualiym\block;
 
+use abdualiym\language\Language;
 
 /**
  * Class Module
@@ -22,19 +23,24 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
+        $this->registerAppParams();
         $this->validateLanguages();
     }
 
-
-    private function validateLanguages()
+    private function registerAppParams()
     {
-        if (count(array_diff_assoc(array_keys($this->languages), $this->dataKeys()))) {
-            throw new \RuntimeException('Language key is invalid. Current support keys range is ' . json_encode($this->dataKeys()));
+        $languageIds = [];
+        foreach ($this->languages as $prefix => $language) {
+            \Yii::$app->params['cms']['languageIds'][$prefix] = $language['id'];
+            \Yii::$app->params['cms']['languages'][$prefix] = $language['name'];
+            \Yii::$app->params['cms']['languages2'][$language['id']] = $language['name'];
         }
     }
 
-    public function dataKeys()
+    private function validateLanguages()
     {
-        return [0, 1, 2, 3];
+        if (count(array_diff(\Yii::$app->params['cms']['languageIds'], Language::dataKeys()))) {
+            throw new \RuntimeException('Language key is invalid. Current support keys range is ' . json_encode(Language::dataKeys()));
+        }
     }
 }

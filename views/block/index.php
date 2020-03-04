@@ -26,17 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    [
-                        'value' => function (Block $model) {
-                            return Html::img($model->getThumbFileUrl('file', 'admin'));
-                        },
-                        'format' => 'raw',
-                    ],
+//                    [
+//                        'value' => function (Block $model) {
+//                            return Html::img($model->getThumbFileUrl('file', 'admin'));
+//                        },
+//                        'format' => 'raw',
+//                    ],
                     [
                         'attribute' => 'parent_id',
                         'label' => Yii::t('block', 'Parent'),
                         'value' => function (Block $model) {
-                            return $model->getParent() ? $model->getParent()->label : null;
+                            return $model->getParent() ? ($model->getParent())->label : null;
                         },
                         'filter' => Block::parentList()
                     ],

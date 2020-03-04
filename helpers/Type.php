@@ -3,7 +3,7 @@
 namespace abdualiym\block\helpers;
 
 use abdualiym\block\Module;
-use yii\helpers\VarDumper;
+use abdualiym\language\Language;
 use yiidreamteam\upload\FileUploadBehavior;
 use yiidreamteam\upload\ImageUploadBehavior;
 
@@ -41,18 +41,18 @@ class Type
     private static function imageConfig($common = false)
     {
         $module = Module::getInstance();
-        $keys = $module->dataKeys();
+        $keys = Language::dataKeys();
 
         $array = [];
         foreach ($keys as $i => $key) {
             $array[] = [
-                'class' => ImageUploadBehavior::class,
+                'class' => ImageUploadBehavior::className(),
                 'attribute' => 'data_' . $key,
                 'createThumbsOnRequest' => true,
-                'filePath' => $module->storageRoot . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
-                'fileUrl' => $module->storageHost . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
-                'thumbPath' => $module->storageRoot . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[data_' . $key.']].[[extension]]',
-                'thumbUrl' => $module->storageHost . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[data_' . $key.']].[[extension]]',
+                'filePath' => $module->storageRoot . '/yii2-block/data/[[attribute_id]]/[[id]].[[extension]]',
+                'fileUrl' => $module->storageHost . '/yii2-block/data/[[attribute_id]]/[[id]].[[extension]]',
+                'thumbPath' => $module->storageRoot . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[id]].[[extension]]',
+                'thumbUrl' => $module->storageHost . '/yii2-block/cache/[[attribute_id]]/[[profile]]_[[id]].[[extension]]',
                 'thumbs' => $module->thumbs
             ];
 
@@ -67,15 +67,15 @@ class Type
     private static function fileConfig($common = false)
     {
         $module = Module::getInstance();
-        $keys = $module->dataKeys();
+        $keys = Language::dataKeys();
 
         $array = [];
         foreach ($keys as $i => $key) {
             $array[] = [
                 'class' => FileUploadBehavior::className(),
                 'attribute' => 'data_' . $key,
-                'filePath' => $module->storageRoot . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
-                'fileUrl' => $module->storageHost . '/yii2-block/data/[[attribute_id]]/[[data_' . $key.']].[[extension]]',
+                'filePath' => '@staticRoot/app/text/[[attribute_text_id]]/[[id]].[[extension]]',
+                'fileUrl' => '@staticUrl/app/text/[[attribute_text_id]]/[[id]].[[extension]]',
             ];
 
             if ($common) {

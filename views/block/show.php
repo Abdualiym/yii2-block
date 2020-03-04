@@ -17,15 +17,7 @@ $module = Yii::$app->controller->module;
 <div class="user-view">
 
     <p>
-        <?= Html::a('Изменить', ['edit', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Обновить', ['update', 'id' => $model->id, 'show' => true], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['drop', 'id' => $model->id], [
-            'class' => 'btn btn-danger pull-right',
-            'data' => [
-                'confirm' => 'Вы уверены?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?= Html::a('Обновить', ['edit', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <div class="row">
@@ -81,11 +73,11 @@ $module = Yii::$app->controller->module;
     </div>
 
 
-    <div class="box box-primary">
+    <div class="box box-default">
         <div class="box-header with-border">Контент</div>
         <div class="box-body">
 
-            <?php if ($model->isCommon()): ?>
+            <?php if (in_array($model->data_type, [Type::STRING_COMMON, Type::TEXT_COMMON, Type::IMAGE_COMMON, Type::LINK_COMMON, Type::FILE_COMMON])): ?>
                 <?= $model->showData(); ?>
             <?php else: ?>
                 <ul class="nav nav-tabs" role="tablist">
