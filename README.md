@@ -2,7 +2,7 @@
 
 The extension allows manage html content block.
 
-## Installation
+### Installation
 
 - Install with composer:
 
@@ -19,11 +19,12 @@ php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-block/migrations
 - Setup in common config storage and language configurations.
 > language indexes related with database columns.
 
-> Admin panel tabs render by array values order 
+> Admin panel tabs render by array values order. 
 
+> Begin id param value from 0.
 ```php
 'modules' => [
-    'block' => [
+    'block' => [ // don`t change module key
         'class' => '@abdualiym\block\Module',
         'storageRoot' => $params['staticPath'],
         'storageHost' => $params['staticHostInfo'],
@@ -36,27 +37,22 @@ php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-block/migrations
                 'id' => 0,
                 'name' => 'Русский',
             ],
-            'en' => [
+            'uz' => [
                 'id' => 1,
-                'name' => 'English',
+                'name' => 'O`zbek tili',
             ],
         ],
     ],
-],
+]
 ```
 
-##In admin panel add belove links for manage blocks
-> for manage blocks:
-```
-/block/block/index
-```
-> links for content manager update/view each block uses `slug` attribute 
-```
-/block/block/view?slug=slug-value
-/block/block/update?slug=slug-value
+- In admin panel add belove links for manage categories and blocks:
+```php
+/block/categories/index
+/block/block/index?slug=your_category_slug_name
 ```
 
-> CKEditor use Elfinder plugin for save files and images. Refer [Elfinder readme](https://github.com/MihailDev/yii2-elfinder) for proper configuration
+> For using BlockController actions you must manual specify their category slug in route.
 
 ###Examples
 
@@ -82,3 +78,20 @@ Extension registers next language arrays to Yii::$app->params[] for use in views
     ...
 ]
 ```
+
+###Frontend widgets integration
+
+> get all blocks by category slug
+```
+abdualiym\block\entities\Block::getBySlug($slug)
+
+```
+
+
+###Examples for use in frontend see [yii2-language](https://github.com/Abdualiym/yii2-language) extension
+
+
+---
+
+> TODO 
+ - Copy from extension root directory example widgets for frontend integration  

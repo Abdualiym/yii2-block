@@ -6,11 +6,12 @@ use abdualiym\language\Language;
 
 /**
  * Class Module
- * @package abdualiym\block
+ * @package abdualiym\slider
  * @property string $storageRoot
  * @property string $storageHost
  * @property array $thumbs
  * @property array $languages
+ * @property array $menuActions
  */
 class Module extends \yii\base\Module
 {
