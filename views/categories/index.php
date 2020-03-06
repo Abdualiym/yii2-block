@@ -24,12 +24,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'title',
+                        [
+                            'attribute' => 'title',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return Html::a($model->title, ['view', 'id' => $model->id]);
+                            }
+                        ],
             'slug',
             [
                 'attribute' => 'id',
                 'value' => function (Categories $model) {
-                    return Html::a($model->title, ['/block/blocks/index', 'slug' => $model->slug]);
+                    return Html::a(Yii::t('block','Blocks'), ['blocks/index', 'slug' => $model->slug]);
                 },
                 'label' => Yii::t('block', 'View'),
                 'format' => 'raw'

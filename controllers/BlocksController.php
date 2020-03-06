@@ -3,14 +3,14 @@
 namespace abdualiym\block\controllers;
 
 use abdualiym\block\entities\Categories;
-use abdualiym\block\entities\Slides;
-use abdualiym\block\forms\SlidesSearch;
+use abdualiym\block\entities\Blocks;
+use abdualiym\block\forms\BlocksSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class SlidesController extends Controller
+class BlocksController extends Controller
 {
     public function behaviors()
     {
@@ -25,12 +25,12 @@ class SlidesController extends Controller
     }
 
     /**
-     * Lists all Slides models.
+     * Lists all Blocks models.
      * @return mixed
      */
     public function actionIndex($slug)
     {
-        $searchModel = new SlidesSearch();
+        $searchModel = new BlocksSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $slug);
 
         return $this->render('index', [
@@ -41,7 +41,7 @@ class SlidesController extends Controller
     }
 
     /**
-     * Displays a single Slides model.
+     * Displays a single Blocks model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -55,15 +55,15 @@ class SlidesController extends Controller
     }
 
     /**
-     * Finds the Slides model based on its primary key value.
+     * Finds the Blocks model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Slides the loaded model
+     * @return Blocks the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Slides::findOne($id)) !== null) {
+        if (($model = Blocks::findOne($id)) !== null) {
             return $model;
         }
 
@@ -71,13 +71,13 @@ class SlidesController extends Controller
     }
 
     /**
-     * Creates a new Slides model.
+     * Creates a new Blocks model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate($slug)
     {
-        $model = new Slides();
+        $model = new Blocks();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'slug' => $slug]);
@@ -90,7 +90,7 @@ class SlidesController extends Controller
     }
 
     /**
-     * Updates an existing Slides model.
+     * Updates an existing Blocks model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -101,7 +101,7 @@ class SlidesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'slug' => $slug]);
+            return $this->redirect(['index', 'slug' => $slug]);
         }
 
         return $this->render('update', [
@@ -111,16 +111,16 @@ class SlidesController extends Controller
     }
 
     /**
-     * Deletes an existing Slides model.
+     * Deletes an existing Blocks model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $slug)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'slug' => $slug]);
     }
 }

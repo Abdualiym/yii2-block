@@ -15,6 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('block', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+
+        <?= Html::a(Yii::t('block', 'Delete'), ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger pull-right',
+            'data' => [
+                'confirm' => Yii::t('block', 'Are you sure you want to delete this item?'),
+                'method' => 'post',
+            ],
+        ]) ?>
     </p>
 
     <div class="box">
@@ -25,6 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attributes' => [
                         'title',
                         'slug',
+                        [
+                            'attribute' => 'id',
+                            'label' => 'Blocks index',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return Html::a('View', ['blocks/index', 'slug' => $model->slug]);
+                            }
+                        ]
                     ],
                 ]) ?>
             </div>
@@ -34,18 +50,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attributes' => [
                         'created_at:datetime',
                         'updated_at:datetime',
+                        [
+                            'attribute' => 'id',
+                            'label' => 'User form',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return Html::a('View', ['blocks', 'slug' => $model->slug]);
+                            }
+                        ]
                     ],
                 ]) ?>
             </div>
         </div>
     </div>
 
-    <?= Html::a(Yii::t('block', 'Delete'), ['delete', 'id' => $model->id], [
-        'class' => 'btn btn-danger',
-        'data' => [
-            'confirm' => Yii::t('block', 'Are you sure you want to delete this item?'),
-            'method' => 'post',
-        ],
+    <?= $this->render('_blocks_form', [
+        'model' => $model,
+        'blocks' => $blocks
     ]) ?>
 
 </div>

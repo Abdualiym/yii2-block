@@ -6,7 +6,7 @@ use abdualiym\language\Language;
 
 /**
  * Class Module
- * @package abdualiym\slider
+ * @package abdualiym\block
  * @property string $storageRoot
  * @property string $storageHost
  * @property array $thumbs

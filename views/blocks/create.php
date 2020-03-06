@@ -1,13 +1,14 @@
 <?php
 
 use abdualiym\block\entities\Categories;
-use abdualiym\block\entities\Slides;
+use abdualiym\block\entities\Blocks;
 
 /* @var $this yii\web\View */
-/* @var $model Slides */
+/* @var $model Blocks */
+/* @var $category Categories */
 
 $this->title = Yii::t('block', 'Create');
-$this->params['breadcrumbs'][] = ['label' => $category->title_0, 'url' => ['index', 'slug' => $category->slug]];
+$this->params['breadcrumbs'][] = ['label' => $category->title, 'url' => ['index', 'slug' => $category->slug]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articles-create">

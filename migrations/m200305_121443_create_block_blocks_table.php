@@ -22,7 +22,7 @@ class m200305_121443_create_block_blocks_table extends Migration
             'slug' => $this->string()->notNull(),
             'label' => $this->string()->notNull(),
             'size' => $this->integer()->notNull(),
-            'data_type' => $this->integer()->notNull(),
+            'type' => $this->integer()->notNull(),
             'data_0' => $this->text(),
             'data_1' => $this->text(),
             'data_2' => $this->text(),

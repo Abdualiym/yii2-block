@@ -2,6 +2,7 @@
 
 namespace abdualiym\block\controllers;
 
+use abdualiym\block\entities\Blocks;
 use abdualiym\block\entities\Categories;
 use abdualiym\block\forms\CategoriesSearch;
 use Yii;
@@ -11,7 +12,7 @@ use yii\web\NotFoundHttpException;
 
 class CategoriesController extends Controller
 {
-    
+
     public function behaviors()
     {
         return [
@@ -47,8 +48,18 @@ class CategoriesController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $blocks = Blocks::find()->where(['category_id' => $model->id])->orderBy('sort')->all();
+        foreach ($blocks as $block) {
+            $modelByType = $block->getModelByType();
+            $modelByType->load(Yii::$app->request->post());
+            $modelByType->save();
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'blocks' => $blocks,
         ]);
     }
 
@@ -66,6 +77,49 @@ class CategoriesController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('block', 'The requested page does not exist.'));
+    }
+
+    public function actionBlocks($slug)
+    {
+        $model = Categories::findOne(['slug' => $slug]);
+
+        $blocks = Blocks::find()->where(['category_id' => $model->id])->orderBy('sort')->all();
+        foreach ($blocks as $block) {
+            $modelByType = $block->getModelByType();
+            $modelByType->load(Yii::$app->request->post());
+            $modelByType->save();
+        }
+
+        echo $this->render('blocks', [
+            'model' => $model,
+            'blocks' => $blocks
+        ]);
+    }
+
+    public function actionUpdateBlocks($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update-blocks', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionViewBlocks($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update-blocks', [
+            'model' => $model,
+        ]);
     }
 
     /**

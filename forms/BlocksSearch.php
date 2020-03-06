@@ -3,18 +3,16 @@
 namespace abdualiym\block\forms;
 
 use abdualiym\block\entities\Categories;
-use abdualiym\block\entities\Slides;
+use abdualiym\block\entities\Blocks;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
-class SlidesSearch extends Slides
+class BlocksSearch extends Blocks
 {
 
     public function rules()
     {
-        return [
-            [['active'], 'integer'],
-        ];
+        return [];
     }
 
 
@@ -34,13 +32,13 @@ class SlidesSearch extends Slides
     public function search($params, $slug)
     {
         $category = Categories::findOne(['slug' => $slug]);
-        $query = Slides::find()->where(['category_id' => $category->id]);
+        $query = Blocks::find()->where(['category_id' => $category->id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'sort' => SORT_DESC
+                    'sort' => SORT_ASC
                 ]
             ],
         ]);
@@ -52,9 +50,6 @@ class SlidesSearch extends Slides
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        // grid filtering conditions
-        $query->andFilterWhere(['active' => $this->active]);
 
         return $dataProvider;
     }
