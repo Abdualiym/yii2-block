@@ -64,7 +64,18 @@ class File extends BlockActiveRecord
 
     public function getData($key)
     {
-        return $this->getUploadedFileUrl('data_' . $key) . 'file';
+        return $this->getUploadedFileUrl('data_' . $key);
+    }
+
+    public function get()
+    {
+        $key = \Yii::$app->params['cms']['languageIds'][\Yii::$app->language];
+
+        if (!$this['data_' . $key]) {
+            $key = 0;
+        }
+
+        return $this->getUploadedFileUrl('data_' . $key);
     }
 
     public function getFormField($form, $key, $language)

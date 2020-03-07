@@ -83,13 +83,18 @@ Extension registers next language arrays to Yii::$app->params[] for use in views
 
 > get all blocks by category slug
 ```
-abdualiym\block\entities\Block::getBySlug($slug)
+abdualiym\block\entities\Blocks::getBySlug($slug)
 
 ```
 
+> get each block data for current app language:
+```
+$blocks = Blocks::getBySlug($slug);
+foreach ($blocks as $block) {
+    echo ($blockObject->getModelByType())->get();
+}
 
-###Examples for use in frontend see [yii2-language](https://github.com/Abdualiym/yii2-language) extension
-
+```
 
 ---
 

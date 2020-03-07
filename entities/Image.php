@@ -2,10 +2,10 @@
 
 namespace abdualiym\block\entities;
 
+use kartik\file\FileInput;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Html;
-use kartik\file\FileInput;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
@@ -16,6 +16,17 @@ use yiidreamteam\upload\ImageUploadBehavior;
  */
 class Image extends BlockActiveRecord
 {
+
+    public static function getFileUrl($object): string
+    {
+        $key = \Yii::$app->params['cms']['languageIds'][\Yii::$app->language];
+
+        if (!$object['photo_' . $key]) {
+            $key = 0;
+        }
+
+        return $object->getUploadedFileUrl('data_' . $key);
+    }
 
     public function rules()
     {
@@ -69,10 +80,20 @@ class Image extends BlockActiveRecord
         ];
     }
 
-
     public function getData($key)
     {
-        return $this->getThumbFileUrl('data_' . $key, 'md') . 'image';
+        return $this->getThumbFileUrl('data_' . $key, 'md');
+    }
+
+    public function get($thumbProfile = null)
+    {
+        $key = \Yii::$app->params['cms']['languageIds'][\Yii::$app->language];
+
+        if (!$this['data_' . $key]) {
+            $key = 0;
+        }
+
+        return $thumbProfile ? $this->getThumbFileUrl('data_' . $key, $thumbProfile) : $this->getImageFileUrl('data_' . $key);
     }
 
     public function getFormField($form, $key, $language)
