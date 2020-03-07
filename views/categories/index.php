@@ -31,17 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return Html::a($model->title, ['view', 'id' => $model->id]);
                             }
                         ],
-            'slug',
             [
                 'attribute' => 'id',
                 'value' => function (Categories $model) {
-                    return Html::a(Yii::t('block','Blocks'), ['blocks/index', 'slug' => $model->slug]);
+                    return Html::a(Yii::t('block','Manage blocks'), ['blocks/index', 'slug' => $model->slug]);
                 },
                 'label' => Yii::t('block', 'View'),
                 'format' => 'raw'
             ],
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]); ?>
 </div>

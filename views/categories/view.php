@@ -35,10 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'slug',
                         [
                             'attribute' => 'id',
-                            'label' => 'Blocks index',
+                            'label' => Yii::t('block', 'View'),
                             'format' => 'raw',
                             'value' => function ($model) {
-                                return Html::a('View', ['blocks/index', 'slug' => $model->slug]);
+                                return Html::a(Yii::t('block', 'Blocks'), ['blocks/index', 'slug' => $model->slug]);
                             }
                         ]
                     ],
@@ -52,10 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'updated_at:datetime',
                         [
                             'attribute' => 'id',
-                            'label' => 'User form',
+                            'label' => Yii::t('block', 'View'),
                             'format' => 'raw',
                             'value' => function ($model) {
-                                return Html::a('View', ['blocks', 'slug' => $model->slug]);
+                                return Html::a(Yii::t('block', 'Manage blocks'), ['blocks', 'slug' => $model->slug]);
                             }
                         ]
                     ],

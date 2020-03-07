@@ -73,6 +73,7 @@ class Blocks extends \yii\db\ActiveRecord
             'category_id' => Yii::t('block', 'Category'),
             'sort' => Yii::t('block', 'Sort'),
             'size' => Yii::t('block', 'Size'),
+            'type' => Yii::t('block', 'Type'),
             'label' => Yii::t('block', 'Label'),
             'slug' => Yii::t('block', 'Slug'),
             'created_at' => Yii::t('block', 'Created At'),

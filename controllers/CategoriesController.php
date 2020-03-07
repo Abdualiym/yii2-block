@@ -50,7 +50,7 @@ class CategoriesController extends Controller
     {
         $model = $this->findModel($id);
 
-        $blocks = Blocks::find()->where(['category_id' => $model->id])->orderBy('sort')->all();
+        $blocks = Blocks::getBySlug($model->slug);
         foreach ($blocks as $block) {
             $modelByType = $block->getModelByType();
             $modelByType->load(Yii::$app->request->post());
@@ -83,14 +83,14 @@ class CategoriesController extends Controller
     {
         $model = Categories::findOne(['slug' => $slug]);
 
-        $blocks = Blocks::find()->where(['category_id' => $model->id])->orderBy('sort')->all();
+        $blocks = Blocks::getBySlug($slug);
         foreach ($blocks as $block) {
             $modelByType = $block->getModelByType();
             $modelByType->load(Yii::$app->request->post());
             $modelByType->save();
         }
 
-        echo $this->render('blocks', [
+        return $this->render('blocks', [
             'model' => $model,
             'blocks' => $blocks
         ]);

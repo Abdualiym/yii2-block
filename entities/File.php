@@ -80,7 +80,7 @@ class File extends BlockActiveRecord
                 'showUpload' => false,
                 'previewFileType' => 'any',
                 'browseClass' => 'btn btn-primary btn-block',
-                'browseLabel' => Yii::t('block', 'File'),
+                'browseLabel' => Yii::t('block', 'Upload'),
                 'layoutTemplates' => [
                     'main1' => '<div class="kv-upload-progress hide"></div>{browse}{preview}',
                 ],

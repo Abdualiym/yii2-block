@@ -10,9 +10,7 @@ class CategoriesSearch extends Categories
 {
     public function rules()
     {
-        return [
-            [['title', 'slug'], 'safe'],
-        ];
+        return [];
     }
 
     /**
@@ -35,8 +33,6 @@ class CategoriesSearch extends Categories
     {
         $query = Categories::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -48,9 +44,6 @@ class CategoriesSearch extends Categories
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->slug]);
 
         return $dataProvider;
     }

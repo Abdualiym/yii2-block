@@ -1,13 +1,13 @@
 # yii2-block extension
 
-The extension allows manage html content block.
+The extension allows manage block of html contents, files, images.
 
 ### Installation
 
 - Install with composer:
 
 ```bash
-composer require abdualiym/yii2-block "^1.0"
+composer require abdualiym/yii2-block "^1.1"
 ```
 
 - **After composer install** run console command for create tables:
@@ -39,7 +39,7 @@ php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-block/migrations
             ],
             'uz' => [
                 'id' => 1,
-                'name' => 'O`zbek tili',
+                'name' => 'English',
             ],
         ],
     ],

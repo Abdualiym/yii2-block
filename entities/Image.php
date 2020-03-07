@@ -87,7 +87,7 @@ class Image extends BlockActiveRecord
                 'showRemove' => false,
                 'showCancel' => false,
                 'browseClass' => 'btn btn-primary btn-block',
-                'browseLabel' => 'Рисунок',
+                'browseLabel' => Yii::t('block', 'Upload'),
                 'layoutTemplates' => [
                     'main1' => '<div class="kv-upload-progress hide"></div>{browse}{preview}',
                 ],
