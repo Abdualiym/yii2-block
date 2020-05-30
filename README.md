@@ -54,7 +54,7 @@ php yii migrate/up --migrationPath=@vendor/abdualiym/yii2-block/migrations
 
 > For using BlockController actions you must manual specify their category slug in route.
 
-###Examples
+### Examples
 
 Extension registers next language arrays to Yii::$app->params[] for use in views:
 ```php
@@ -79,7 +79,7 @@ Extension registers next language arrays to Yii::$app->params[] for use in views
 ]
 ```
 
-###Frontend widgets integration
+### Frontend widgets integration
 
 > get all blocks by category slug
 ```
