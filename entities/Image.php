@@ -31,7 +31,7 @@ class Image extends BlockActiveRecord
     public function rules()
     {
         return [
-            [['data_0', 'data_1', 'data_2', 'data_3'], 'image'],
+            [['data_0', 'data_1', 'data_2', 'data_3'], 'image', 'extensions' => 'png, jpg'],
         ];
     }
 
